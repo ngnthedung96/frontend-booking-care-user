@@ -1,6 +1,6 @@
 import { systemAxios } from "@/services/axios.service";
 
-const BASE_API = "users/";
+// const BASE_API = "users/";
 const GETUSERS_API = "users/get-list";
 const GETEXCEL_API = "users/export-excel";
 
@@ -17,16 +17,6 @@ export const mutations = {
   },
   addData(state, newValue) {
     state.userDatas.unshift(newValue);
-  },
-  updateData: (state, newValue) => {
-    const index = state.userDatas.findIndex((item) => item.id === newValue.id);
-    if (index !== -1) {
-      state.userDatas.splice(index, 1, newValue);
-    }
-  },
-  removeData(state, newValue) {
-    const rem = state.userDatas.filter((item) => item.id !== newValue.id);
-    state.userDatas = state.userDatas.filter((item) => item.id !== newValue.id);
   },
 };
 
@@ -49,7 +39,7 @@ export const actions = {
       }
     }
   },
-  async getListExcel({ commit, dispatch }) {
+  async getListExcel({ dispatch }) {
     try {
       const res = await systemAxios.get(GETEXCEL_API);
       const { data, msg, error } = res.data;

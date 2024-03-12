@@ -1,11 +1,6 @@
-import Vue from "vue";
 import Vuex from "vuex";
-import LogRocket from "logrocket";
-// LogRocket.init("sxu2fp/demo");
 
 import modules from "./modules";
-
-Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {},

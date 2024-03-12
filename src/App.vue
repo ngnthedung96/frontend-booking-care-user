@@ -1,4 +1,5 @@
 <template>
+  <notifications position="top right" />
   <main>
     <router-view></router-view>
   </main>
@@ -8,23 +9,23 @@
 export default {
   data() {
     return {
-      authPage: false
-    }
+      authPage: false,
+    };
   },
   computed: {
     headerVisible() {
-      if (this.getPath === '/dang-nhap') {
-        this.authPage === true
+      if (this.getPath === "/dang-nhap") {
+        this.authPage === true;
       }
-      return this.authPage 
-    }
+      return this.authPage;
+    },
   },
   methods: {
     getPath(path) {
-      console.log(path)
-      return path
-    }
-  }
+      console.log(path);
+      return path;
+    },
+  },
 };
 </script>
 

@@ -4,25 +4,60 @@
       <div class="mx-auto v-col-6">
         <div class="v-col-12">
           <img class="mb-4" src="../../img/logo.png" alt="" />
-          <form @submit.prevent="submit">
-
+          <form @submit.prevent="tryToLogIn">
             <div class="form-control">
               <v-text-field
-                v-model="email.value.value"
-                :error-messages="email.errorMessage.value"
-                label="Email"
+                v-model="account"
+                label="Tài khoản"
+                :error-messages="
+                  checkError(
+                    submitted && v$.account.$error,
+                    v$.account.required,
+                    'Vui lòng nhập email hoặc số điện thoại'
+                  )
+                "
               ></v-text-field>
             </div>
 
             <div class="form-control">
               <v-text-field
-                v-model="email.value.value"
-                :error-messages="password.errorMessage.value"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="showPassword ? 'text' : 'password'"
+                @click:append="showPassword = !showPassword"
+                v-model="password"
+                :error-messages="
+                  checkError(
+                    submitted && v$.password.$error,
+                    v$.password.required,
+                    'Vui lòng nhập mật khẩu với độ dài hơn 6 kí tự'
+                  )
+                "
                 label="Mật khẩu"
               ></v-text-field>
             </div>
-            <v-btn class="me-4 my-8 v-col-12 bg-blue-lighten-1" type="submit"> Đăng nhập </v-btn>
-            <div class="signup">Bạn chưa có tài khoản ?
+            <v-btn
+              size="x-large"
+              v-if="!isLoading"
+              class="me-4 my-8 v-col-12 bg-blue-lighten-1"
+              type="submit"
+            >
+              Đăng nhập
+            </v-btn>
+            <v-btn
+              size="x-large"
+              v-else
+              class="me-4 my-8 v-col-12 bg-blue-lighten-1"
+              type="submit"
+            >
+              Đăng nhập
+              <v-progress-circular
+                class="ms-2"
+                color="primary"
+                indeterminate
+              ></v-progress-circular>
+            </v-btn>
+            <div class="signup">
+              Bạn chưa có tài khoản ?
               <router-link to="/dang-ky">Đăng ký</router-link>
             </div>
           </form>
@@ -31,28 +66,67 @@
     </v-container>
   </section>
 </template>
-<script setup>
-import { useField, useForm } from "vee-validate";
-
-const { handleSubmit } = useForm({
-  validationSchema: {
-    email(value) {
-      if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true;
-
-      return "Email không hợp lệ";
-    },
-    password(value) {
-      if (value?.length) return true;
-      return "Hãy nhập mật khẩu của bạn";
+<script>
+import { useVuelidate } from "@vuelidate/core";
+import { required, minLength } from "@vuelidate/validators";
+import { authMethods, notificationMethods } from "@/state/helpers";
+export default {
+  setup() {
+    return {
+      v$: useVuelidate(),
+    };
+  },
+  data() {
+    return {
+      account: "",
+      password: "",
+      showPassword: false,
+      submitted: false,
+      isLoading: false,
+    };
+  },
+  computed: {
+    notification() {
+      return this.$store ? this.$store.state.notification : null;
     },
   },
-});
-const email = useField("email");
-const password = useField("password");
+  validations() {
+    return {
+      account: { required },
+      password: { required, minLengthValue: minLength(6) },
+    };
+  },
+  methods: {
+    ...authMethods,
+    ...notificationMethods,
+    // Try to log the user in with the username
+    // and password they provided.
+    checkError(isError, isRequired, msg) {
+      if (isError && isRequired) {
+        return msg;
+      }
+    },
+    async tryToLogIn() {
+      this.submitted = true;
+      this.isLoading = true;
+      // stop here if form is invalid
+      const isFormCorrect = this.v$.$validate();
+      if (!isFormCorrect) {
+        return;
+      } else {
+        const { account, password } = this;
 
-const submit = handleSubmit((values) => {
-  alert(JSON.stringify(values, null, 2));
-});
+        if (account && password) {
+          await this.login({
+            account,
+            password,
+          });
+        }
+      }
+      this.isLoading = false;
+    },
+  },
+};
 </script>
 
 <style scoped>

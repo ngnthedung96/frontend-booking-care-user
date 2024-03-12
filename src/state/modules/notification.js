@@ -1,4 +1,4 @@
-import Vue from "vue";
+import app from "../../main";
 
 export const state = {
   typeLable: null,
@@ -11,12 +11,12 @@ export const mutations = {
     state.typeSnotify = "success";
     state.typeLable = "alert-success";
     state.message = message;
-    Vue.prototype.$snotify.success(message);
+    app.config.globalProperties.$notify({ type: "success", text: message });
   },
   error(state, message) {
     state.typeSnotify = "error";
     state.typeLable = "alert-danger";
-    Vue.prototype.$snotify.error(message);
+    app.config.globalProperties.$notify({ type: "error", text: message });
     state.message = message;
   },
   clear(state) {
