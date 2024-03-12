@@ -14,7 +14,7 @@ export const actions = {
       const result = await systemAxios.post("/auth/login", requestData);
       const { message, error, data } = result.data;
       if (!error) {
-        await tokenService.setAdmin(data);
+        tokenService.setAdmin(data);
         dispatch("notification/success", message, { root: true });
         commit("loginSuccess", data);
         setTimeout(() => {
