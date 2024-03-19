@@ -7,57 +7,15 @@
           <form @submit.prevent="tryToLogIn">
             <div class="form-control">
               <v-text-field
-                v-model="name"
-                :counter="10"
+                v-model="account"
+                label="Tài khoản"
                 :error-messages="
                   checkError(
-                    submitted && v$.name.$error,
-                    v$.name.required,
-                    'Vui lòng nhập họ và tên'
+                    submitted && v$.account.$error,
+                    v$.account.required,
+                    'Vui lòng nhập email hoặc số điện thoại'
                   )
                 "
-                label="Họ và tên"
-              ></v-text-field>
-            </div>
-            <div class="form-control">
-              <v-text-field
-                v-model="phone"
-                :error-messages="
-                  checkError(
-                    submitted && v$.phone.$error,
-                    v$.name.required,
-                    'Vui lòng nhập  số điện thoại'
-                  )
-                "
-                label="Số điện thoại"
-              ></v-text-field>
-            </div>
-
-            <div class="form-control">
-              <v-text-field
-                v-model="address"
-                :error-messages="
-                  checkError(
-                    submitted && v$.address.$error,
-                    v$.address.required,
-                    'Vui lòng nhập địa chỉ'
-                  )
-                "
-                label="Địa chỉ"
-              ></v-text-field>
-            </div>
-
-            <div class="form-control">
-              <v-text-field
-                v-model="email"
-                :error-messages="
-                  checkError(
-                    submitted && v$.email.$error,
-                    v$.email.required,
-                    'Vui lòng nhập địa chỉ email'
-                  )
-                "
-                label="Email"
               ></v-text-field>
             </div>
 
@@ -71,27 +29,19 @@
                   checkError(
                     submitted && v$.password.$error,
                     v$.password.required,
-                    'Vui lòng nhập mật khẩu'
+                    'Vui lòng nhập mật khẩu với độ dài hơn 6 kí tự'
                   )
                 "
                 label="Mật khẩu"
               ></v-text-field>
             </div>
-
-            <div class="form-control">
-              <v-file-input
-                accept="image/*"
-                label="Ảnh đại diện"
-              ></v-file-input>
-            </div>
-
             <v-btn
               size="x-large"
               v-if="!isLoading"
-              class="bg-blue-lighten-1 v-col-12"
+              class="me-4 mt-8 mb-6 v-col-12 bg-blue-lighten-1"
               type="submit"
             >
-              Đăng ký
+              Đăng nhập
             </v-btn>
             <v-btn
               size="x-large"
@@ -99,13 +49,20 @@
               class="me-4 my-8 v-col-12 bg-blue-lighten-1"
               type="submit"
             >
-              Đăng ký
+              Đăng nhập
               <v-progress-circular
                 class="ms-2"
                 color="primary"
                 indeterminate
               ></v-progress-circular>
             </v-btn>
+            <div class="forgot-password mb-2">
+              <router-link to="/quen-mat-khau">Quên mật khẩu ?</router-link>
+            </div>
+            <div class="signup">
+              Bạn chưa có tài khoản ?
+              <router-link to="/dang-ky">Đăng ký</router-link>
+            </div>
           </form>
         </div>
       </div>
@@ -114,7 +71,7 @@
 </template>
 <script>
 import { useVuelidate } from "@vuelidate/core";
-import { required, minLength, email } from "@vuelidate/validators";
+import { required, minLength } from "@vuelidate/validators";
 import { authMethods, notificationMethods } from "@/state/helpers";
 export default {
   setup() {
@@ -124,11 +81,8 @@ export default {
   },
   data() {
     return {
-      name: "",
+      account: "",
       password: "",
-      phone: "",
-      address: "",
-      email: "",
       showPassword: false,
       submitted: false,
       isLoading: false,
@@ -141,10 +95,7 @@ export default {
   },
   validations() {
     return {
-      name: { required },
-      phone: { required },
-      address: { required },
-      email: { required, email },
+      account: { required },
       password: { required, minLengthValue: minLength(6) },
     };
   },
@@ -166,14 +117,14 @@ export default {
       if (!isFormCorrect) {
         return;
       } else {
-        const { name, password, phone, address, email } = this;
-        await this.registeruser({
-          name,
-          password,
-          phone,
-          address,
-          email,
-        });
+        const { account, password } = this;
+
+        if (account && password) {
+          await this.login({
+            account,
+            password,
+          });
+        }
       }
       this.isLoading = false;
     },

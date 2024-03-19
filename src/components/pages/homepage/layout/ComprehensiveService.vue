@@ -125,7 +125,8 @@
 }
 
 .fs {
-  font-size: 25px;
+  font-size: 23px;
   line-height: 50px;
+  font-weight: 600;
 }
 </style>

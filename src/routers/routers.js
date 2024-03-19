@@ -5,8 +5,10 @@ import HospitalService from "../components/pages/hospitalservice/HospitalService
 import SearchPage from "../components/pages/searchpage/SearchPage.vue";
 import StayHealthy from "../components/pages/stayhealthy/StayHealthy.vue";
 import TimeSchedule from "../components/pages/schedule/TimeSchedule.vue";
-import LoginUser from "../components/account/LoginUser.vue";
-import RegisterUser from "../components/account/RegisterUser.vue";
+import LoginUser from "../components/create-account/LoginUser.vue";
+import RegisterUser from "../components/create-account/RegisterUser.vue";
+import AccountPage from "@/components/account/AccountPage.vue";
+import ForgotPassword from "@/components/account/ForgotPassword.vue";
 
 export default [
   { path: "/", component: HomePage },
@@ -25,6 +27,14 @@ export default [
     meta: { authRequired: true },
     component: RegisterUser,
   },
+  {
+    path: "/tai-khoan",
+    component: AccountPage
+  },
+  {
+    path: "/quen-mat-khau",
+    component: ForgotPassword
+  }
   // {
   //   path: "/404",
   //   name: "404",

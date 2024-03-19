@@ -30,7 +30,7 @@ const app = createApp(App);
 
 import { systemAxios } from "./services/axios.service";
 systemAxios.interceptors.request.use((config) => {
-  const token = store.getters["authfack/token"];
+  const token = store.getters["auth/token"];
   config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
@@ -40,7 +40,7 @@ systemAxios.interceptors.response.use(
     return res;
   },
   async (err) => {
-    const refreshToken = store.getters["authfack/refreshToken"];
+    const refreshToken = store.getters["auth/refreshToken"];
     const originalConfig = err.config;
 
     if (
@@ -58,19 +58,19 @@ systemAxios.interceptors.response.use(
 
           if (!rs.data.error) {
             const data = rs.data.data;
-            store.dispatch("authfack/refreshToken", data);
+            store.dispatch("auth/refreshToken", data);
           }
           return systemAxios(originalConfig);
         } catch (_error) {
           return Promise.reject(_error);
         }
       } else if (err.response.status === 401 && originalConfig._retry) {
-        store.dispatch("authfack/logout");
+        store.dispatch("auth/logout");
       }
     } else {
       // console.log("url: ", err.response.status);
       if (originalConfig.url !== "/auth/login") {
-        store.dispatch("authfack/logout");
+        store.dispatch("auth/logout");
       }
     }
     return Promise.reject(err);

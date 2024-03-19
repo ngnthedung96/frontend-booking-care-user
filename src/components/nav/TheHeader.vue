@@ -68,7 +68,7 @@
           </div>
           <div class="v-col-2 pa-0">
             <div class="v-col-12 pa-0 d-flex justify-end">
-              <ul class="d-flex flex-row justify-end">
+              <ul class="d-flex flex-row align-center justify-end">
                 <li @click="currentPath" class="mr-3">
                   <router-link class="text-decoration-none" to="/lich-hen">
                     <div class="d-flex flex-column">
@@ -85,7 +85,7 @@
                     </div>
                   </router-link>
                 </li>
-                <li>
+                <li v-if="!isLoggedIn">
                   <router-link @click="currentPath" class="text-decoration-none" to="/dang-nhap">
                     <div class="d-flex flex-column">
                     <v-icon
@@ -101,6 +101,21 @@
                     </div>
                   </router-link>
                 </li>
+                <li v-else>
+                  <div class="v-col-12">
+                    <img class="img" @mouseover="showUp = true" src="../../img/doctor/avatar.jpg" alt="">
+                    <div @mouseleave="showUp = false" v-show="showUp" class="subnav bg-grey-lighten-5">
+                      <li class="btn pa-2">
+                        <router-link to="/tai-khoan">
+                          <button>Tài khoản</button>
+                        </router-link>
+                      </li>
+                      <li class="btn pa-2">
+                        <button @click="logOut">Đăng xuất</button>
+                      </li>
+                    </div>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -111,12 +126,28 @@
 </template>
 
 <script>
+import { authComputed, authMethods } from '@/state/helpers'
 export default {
+  data() {
+    return {
+      showUp: false
+    }
+  },
+  computed: {
+    ...authComputed,
+    isLoggedIn() {
+      return this.currentUser ? this.currentUser : null
+    }
+  },
   methods: {
+    ...authMethods,
     currentPath() {
       this.$emit('send-path', this.$route.path)
+    },
+    logOut() {
+      this.logout()
     }
-  }
+  },
 }
 </script>
 
@@ -149,5 +180,23 @@ img {
   background-color: rgb(255, 196, 25);
   color: rgb(255, 243, 209) !important;
   font-weight: bolder;
+}
+
+.img {
+  border-radius: 50%;
+}
+
+.subnav {
+  position: absolute;
+  min-width: 120px;
+  z-index: 1;
+}
+
+button {
+  text-align: center;
+}
+
+.btn + .btn {
+  border-top: 1px solid #ccc;
 }
 </style>

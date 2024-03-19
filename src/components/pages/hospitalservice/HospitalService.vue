@@ -3,54 +3,118 @@
     <banner-image>
       <img class="w-100" src="../../../img/hospital/hospita.png" alt="" />
     </banner-image>
-    <div class="space"></div>
+    <div class="space-150"></div>
     <v-container>
       <for-user></for-user>
       <div class="space"></div>
-      <content-slider>
-        <template #hospital="slotProps">
-          <carousel-layout :big-title="slotProps.title"></carousel-layout>
-          <div class="carousel">
-            <v-slide-group mandatory show-arrows>
-              <slider-item
-                v-for="slider in slotProps.item"
-                :key="slider.title"
-                :image="slider.img"
-                :title="slider.title"
-              ></slider-item>
-            </v-slide-group>
-          </div>
-        </template>
-      </content-slider>
+      <speciality-carousel></speciality-carousel>
+      <div class="space"></div>
+      <facility-carousel></facility-carousel>
     </v-container>
     <div class="space"></div>
-    <doctor-list></doctor-list>
+    <div class="highlight">
+      <img class="w-100" src="../../../img/background-light-blue.png" alt="" />
+      <v-container class="doctor-list">
+        <doctor-list></doctor-list>
+      </v-container>
+    </div>
+    <div class="space"></div>
+    <v-container>
+      <examination-package></examination-package>
+      <div class="space"></div>
+      <have-test></have-test>
+    </v-container>
+    <div class="space"></div>
+    <div class="highlight">
+      <img class="w-100" src="../../../img/background-light-blue.png" alt="" />
+      <v-container class="doctor-list">
+        <have-scan></have-scan>
+      </v-container>
+    </div>
+    <div class="space"></div>
+    <v-container>
+      <have-endoscopic></have-endoscopic>
+      <div class="space"></div>
+      <have-surgery></have-surgery>
+      <div class="space"></div>
+      <booking-suggest></booking-suggest>
+    </v-container>
+    <div class="space"></div>
+    <div class="highlight">
+      <img class="w-100" src="../../../img/background-music.png" alt="">
+      <v-container class="doctor-list">
+        <mental-health></mental-health>
+      </v-container>
+    </div>
+    <div class="space"></div>
+    <v-container>
+      <hand-book></hand-book>
+      <div class="space"></div>
+    </v-container>
   </main-content>
 </template>
 
 <script>
-import ForUser from "../../content/ForUser.vue";
-import DoctorList from "../../doctors/DoctorList.vue";
-import SliderItem from "../../content/SliderItem.vue";
-import ContentSlider from "../../content/ContentSlider.vue";
-import CarouselLayout from "../../content/CarouselLayout.vue";
+import ForUser from "../homepage/layout/ForUser.vue";
+import SpecialityCarousel from "../homepage/layout/SpecialityCarousel.vue";
+import FacilityCarousel from "../homepage/layout/FacilityCarousel.vue";
+import DoctorList from "../homepage/layout/DoctorList.vue";
+import ExaminationPackage from "./layout/ExaminationPackage.vue";
+import HaveTest from "./layout/HaveTest.vue";
+import HaveEndoscopic from "./layout/HaveEndoscopic.vue";
+import HaveScan from "./layout/HaveScan.vue";
+import HaveSurgery from "./layout/HaveSurgery.vue";
+import BookingSuggest from "../homepage/layout/BookingSuggest.vue";
+import MentalHealth from "../homepage/layout/MentalHealth.vue";
+import HandBook from "../homepage/layout/HandBook.vue";
 export default {
   components: {
     ForUser,
-    SliderItem,
-    ContentSlider,
+    SpecialityCarousel,
+    FacilityCarousel,
     DoctorList,
-    CarouselLayout,
+    ExaminationPackage,
+    HaveTest,
+    HaveScan,
+    HaveEndoscopic,
+    HaveSurgery,
+    BookingSuggest,
+    MentalHealth,
+    HandBook
   },
 };
 </script>
 
 <style scoped>
-.w-100 {
+.v-container {
+  max-width: 1200px;
+}
+
+.v-carousel {
   border-radius: 30px;
 }
 
-.space {
+.space-150 {
   height: 150px;
 }
-</style>../../content/CarouselLayout.vue../../content/ContentSlider.vue../../content/ForUser.vue../../content/SliderItem.vue
+
+.space {
+  height: 50px;
+}
+
+.w-100 {
+  max-height: 100%;
+}
+
+.highlight {
+  position: relative;
+  height: 450px;
+}
+
+.doctor-list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+</style>

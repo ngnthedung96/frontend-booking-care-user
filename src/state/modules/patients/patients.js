@@ -1,29 +1,30 @@
 import { systemAxios } from "@/services/axios.service";
+import tokenService from "@/services/token.service";
 
-// const BASE_API = "users/";
-const GETUSERS_API = "users/get-list";
-const GETEXCEL_API = "users/export-excel";
+// const BASE_API = "patients/";
+const GETPATIENTS_API = "patients/get-list";
+const GETEXCEL_API = "patients/export-excel";
 
 export const state = {
-  userList: {},
+  patientList: {},
 };
 
 export const mutations = {
   fetchDataList(state, newValue) {
-    state.userList = newValue;
+    state.patitentList = newValue;
   },
   fetchConfig(state, newValue) {
-    state.configUserDatas = newValue;
+    state.configpatitentDatas = newValue;
   },
   addData(state, newValue) {
-    state.userDatas.unshift(newValue);
+    state.patitentDatas.unshift(newValue);
   },
 };
 
 export const actions = {
-  async getListUser({ commit, dispatch }, requestBody) {
+  async getListpatient({ commit, dispatch }, requestBody) {
     try {
-      const res = await systemAxios.post(GETUSERS_API, requestBody);
+      const res = await systemAxios.post(GETPATIENTS_API, requestBody);
       const { data, msg, error } = res.data;
       console.log(data);
       if (!error) {
@@ -60,4 +61,32 @@ export const actions = {
       }
     }
   },
+  async updatePatient({ dispatch, rootState }, patient) {
+    const id = rootState.auth.currentUser["_id"];
+    try {
+      const result = await systemAxios.put(`/users/edit-user/${id}`, patient);
+      const { message, error, data } = result.data;
+      if (!error) {
+        tokenService.setAdmin(data);
+        dispatch("notification/success", message, { root: true });
+      } else {
+        dispatch("notification/error", message);
+      }
+    } catch (err) {
+      if (err.response) {
+        dispatch("notification/error", err.response.data.msg, { root: true });
+      } else {
+        dispatch("notification/error", err, { root: true });
+      }
+    }
+  },
+  async updatePassword(_, email) {
+    try {
+      const result = await systemAxios.post('/auth/check-code-change-pass', email)
+      console.log(result.data)
+    }
+    catch(err) {
+      console.log(err.message)
+    }
+  }
 };

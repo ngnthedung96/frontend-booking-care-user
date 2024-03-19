@@ -17,11 +17,11 @@ const router = createRouter({
 // Before each route evaluates...
 router.beforeEach((routeTo, routeFrom, next) => {
   const unPublicPages = [];
-  const authpage = !unPublicPages.includes(routeTo.path);
+  const authpage = unPublicPages.includes(routeTo.path);
   // const loggeduser = store.getters["authfack/loggedIn"];
   let checkUser = null;
   if (tokenService.getAdmin()) {
-    checkUser = tokenService.getAdmin().adminInfo;
+    checkUser = tokenService.getAdmin();
   }
   if (authpage && !checkUser) {
     console.log("lỗiiiiii");

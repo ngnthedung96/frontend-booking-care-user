@@ -3,7 +3,7 @@ import tokenService from "@/services/token.service";
 import { systemAxios } from "@/services/axios.service";
 
 export const state = {
-  currentAdmin: tokenService.getAdmin(),
+  currentUser: tokenService.getAdmin(),
 };
 
 export const actions = {
@@ -40,13 +40,13 @@ export const actions = {
       const { msg, error } = result.data;
       if (!error) {
         commit("logout");
-        router.push("/login").catch(() => {});
+        router.push("/dang-nhap").catch(() => {});
       } else {
         dispatch("notification/error", msg, { root: true });
       }
     } catch (err) {
       commit("logout");
-      router.push("/login").catch(() => {});
+      router.push("/dang-nhap").catch(() => {});
       if (err.response) {
         dispatch("notification/error", err.response.data.msg, { root: true });
       }
@@ -55,9 +55,7 @@ export const actions = {
 
   refreshToken({ commit }, data) {
     tokenService.updateLocalToken(
-      data.token,
-      data.refreshToken,
-      data.adminInfo
+      data
     );
     commit("refreshToken", data);
   },
@@ -87,19 +85,18 @@ export const actions = {
 export const getters = {
   userId(state) {
     let userId = 0;
-    if (state.currentAdmin) {
-      userId = state.currentAdmin.userInfor.id;
+    if (state.currentUser) {
+      userId = state.currentUser.userInfor.id;
     }
-
     return userId;
   },
   loggedIn(state) {
-    return state.currentAdmin;
+    return state.currentUser;
   },
   token(state) {
     let token = "";
-    if (state.currentAdmin) {
-      token = state.currentAdmin.token;
+    if (state.currentUser) {
+      token = state.currentUser.accessToken;
     } else {
       token = tokenService.getLocalAccessToken();
     }
@@ -108,8 +105,8 @@ export const getters = {
   },
   refreshToken(state) {
     let rftoken = "";
-    if (state.currentAdmin) {
-      rftoken = state.currentAdmin.refreshToken;
+    if (state.currentUser) {
+      rftoken = state.currentUser.refreshToken;
     } else {
       rftoken = tokenService.getLocalRefreshToken();
     }
@@ -120,13 +117,13 @@ export const getters = {
 
 export const mutations = {
   loginSuccess(state, data) {
-    state.currentAdmin = data;
+    state.currentUser = data;
   },
   logout(state) {
-    state.currentAdmin = null;
+    state.currentUser = null;
   },
 
   refreshToken(state, data) {
-    state.currentAdmin = data;
+    state.currentUser = data;
   },
 };

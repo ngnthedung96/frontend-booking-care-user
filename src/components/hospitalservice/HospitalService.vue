@@ -28,7 +28,7 @@
 
 <script>
 import ForUser from "../layout/ForUser.vue";
-import DoctorList from "../doctors/DoctorList.vue";
+import DoctorList from "../pages/homepage/layout/DoctorList.vue";
 import SliderItem from "../layout/SliderItem.vue";
 import ContentSlider from "../layout/ContentSlider.vue";
 import CarouselLayout from "../layout/CarouselLayout.vue";
