@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <!-- <div class="bg-grey-lighten-3">
+    <div class="bg-grey-lighten-3">
       <v-container>
         <v-row class="v-col-12">
           <div class="v-col-5">
@@ -137,7 +137,7 @@
           </div>
         </div>
       </v-container>
-    </div> -->
+    </div>
   </footer>
 </template>
 

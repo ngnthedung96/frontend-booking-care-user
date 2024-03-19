@@ -1,3 +1,4 @@
+import router from '../../../routers'
 import { systemAxios } from "@/services/axios.service";
 import tokenService from "@/services/token.service";
 
@@ -80,13 +81,68 @@ export const actions = {
       }
     }
   },
-  async updatePassword(_, email) {
+  async updatePassword({dispatch}, data) {
+    const email = data.email
     try {
-      const result = await systemAxios.post('/auth/check-code-change-pass', email)
-      console.log(result.data)
+      const result = await systemAxios.post(`/auth/sending-mail-reset-pass?email=${email}`)
+      const { message, error } = result.data;
+      if (!error) {
+        dispatch("notification/success", message, { root: true });
+      }
+      else {
+        dispatch("notification/error", message);
+      }
     }
     catch(err) {
-      console.log(err.message)
+      if (err.response) {
+        dispatch("notification/error", err.response.data.msg, { root: true });
+      } else {
+        dispatch("notification/error", err, { root: true });
+      }
+    }
+  },
+  async newPassword({dispatch}, data) {
+    try {
+      const result = await systemAxios.post('/auth/check-code-change-pass',{
+        code: data.code,
+        newPassword: data.password,
+        id: data.id
+      })
+      const { message, error } = result.data;
+      if (!error) {
+        dispatch("notification/success", message, { root: true });
+      }
+      else {
+        dispatch("notification/error", message);
+      }
+    }
+    catch(err) {
+      if (err.response) {
+        dispatch("notification/error", err.response.data.msg, { root: true });
+      } else {
+        dispatch("notification/error", err, { root: true });
+      }
+    }
+  },
+  async verifyEmail({dispatch}, data) {
+    try {
+      const id = data.id
+      const result = systemAxios.get(`/auth/verify-email/${id}`)
+      const { message, error } = result.data;
+      if (!error) {
+        dispatch("notification/success", message, { root: true });
+        router.push('/dang-nhap')
+      }
+      else {
+        dispatch("notification/error", message);
+      }
+    }
+    catch (err) {
+      if (err.response) {
+        dispatch("notification/error", err.response.data.msg, { root: true });
+      } else {
+        dispatch("notification/error", err, { root: true });
+      }
     }
   }
 };

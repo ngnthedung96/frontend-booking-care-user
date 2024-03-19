@@ -80,7 +80,7 @@ systemAxios.interceptors.response.use(
 app.use(notification);
 app.component("main-content", MainContent);
 app.component("banner-image", BannerImage);
-app.use(router);
+app.use(router)
 app.use(store);
 app.use(vuetify);
 

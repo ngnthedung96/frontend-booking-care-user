@@ -4,5 +4,5 @@ export const patientComputed = {
   ...mapState("patients/patients", ["patientList"]),
 };
 export const patientMethods = {
-  ...mapActions("patients/patients", ["getListpatient", "getListExcel", "updatePatient", "updatePassword"]),
+  ...mapActions("patients/patients", ["getListpatient", "getListExcel", "updatePatient", "updatePassword", "newPassword", "verifyEmail"]),
 };

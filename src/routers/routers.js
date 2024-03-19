@@ -1,4 +1,3 @@
-// import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "../components/pages/homepage/HomePage.vue";
 import HomeService from "../components/pages/homeservice/HomeService.vue";
 import HospitalService from "../components/pages/hospitalservice/HospitalService.vue";
@@ -9,6 +8,8 @@ import LoginUser from "../components/create-account/LoginUser.vue";
 import RegisterUser from "../components/create-account/RegisterUser.vue";
 import AccountPage from "@/components/account/AccountPage.vue";
 import ForgotPassword from "@/components/account/ForgotPassword.vue";
+import ResetPassword from "../components/account/ResetPassword.vue"
+import VerifyEmail from "../components/account/VerifyEmail.vue"
 
 export default [
   { path: "/", component: HomePage },
@@ -34,6 +35,14 @@ export default [
   {
     path: "/quen-mat-khau",
     component: ForgotPassword
+  },
+  {
+    path: "/cai-dat-lai-mat-khau",
+    component: ResetPassword
+  },
+  {
+    path: "/xac-thuc-email",
+    component: VerifyEmail
   }
   // {
   //   path: "/404",

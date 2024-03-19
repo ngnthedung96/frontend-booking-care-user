@@ -1,6 +1,6 @@
 <template>
   <div class="bg-light-blue-lighten-5"></div>
-  <v-container>
+  <v-container class="d-flex justify-center">
     <div class="img">
       <slot></slot>
     </div>
