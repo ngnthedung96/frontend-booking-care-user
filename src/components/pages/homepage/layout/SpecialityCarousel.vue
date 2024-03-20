@@ -25,21 +25,45 @@
       show-arrows
     >
       <v-slide-group-item
-        v-for="n in 15"
-        :key="n"
+        v-for="item in specialityList"
+        :key="item['_id']"
       >
-        <v-card
-          class="ma-4"
-          color="grey-lighten-1"
-          height="350"
-          width="357.333333333"
-        >
-        </v-card>
+        <router-link to="/">
+          <v-card
+            class="ma-4"
+            color="grey-lighten-1"
+            height="350"
+            width="357.333333333"
+          >
+          <div>{{ item.name }}</div>
+          </v-card>
+        </router-link>
       </v-slide-group-item>
     </v-slide-group>
   </v-sheet>
 </template>
 
+<script>
+import { speciality } from "../../../../state/helpers"
+export default {
+  computed: {
+    ...speciality.specialityComputed,
+  },
+  methods: {
+    ...speciality.specialityMethods,
+    initial() {
+      this.getSpeciality();
+    },
+    async getSpeciality() {
+      await this.getListSpeciality();
+      console.log(this.specialityList)
+    },
+  },
+  async created() {
+    this.initial();
+  },
+}
+</script>
 
 <style>
 .v-slide-group {

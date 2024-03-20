@@ -21,15 +21,46 @@
       mandatory
       show-arrows
     >
-      <v-slide-group-item v-for="n in 15" :key="n">
-        <v-card
-          class="ma-4"
-          color="grey-lighten-1"
-          height="350"
-          width="357.333333333"
-        >
-        </v-card>
+      <v-slide-group-item
+        v-for="clinic in clinicList"
+        :key="clinic['_id']"
+      >
+        <router-link to="/">
+          <v-card
+            class="ma-4"
+            color="grey-lighten-1"
+            height="350"
+            width="357.333333333"
+          >
+          <!-- <img :src="clinic.imageLink" alt=""> -->
+          <div>{{ clinic.name }}</div>
+          </v-card>
+        </router-link>
       </v-slide-group-item>
     </v-slide-group>
   </v-sheet>
 </template>
+
+<script>
+import { clinic } from "../../../../state/helpers";
+export default {
+  computed: {
+    ...clinic.clinicComputed,
+  },
+  methods: {
+    ...clinic.clinicMethods,
+    initial() {
+      this.getClinics();
+    },
+    async getClinics() {
+      await this.getListClinic();
+    },
+  },
+  async created() {
+    this.initial();
+  },
+};
+</script>
+
+<style scoped>
+</style>

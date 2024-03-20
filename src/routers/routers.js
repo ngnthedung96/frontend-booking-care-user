@@ -8,8 +8,9 @@ import LoginUser from "../components/create-account/LoginUser.vue";
 import RegisterUser from "../components/create-account/RegisterUser.vue";
 import AccountPage from "@/components/account/AccountPage.vue";
 import ForgotPassword from "@/components/account/ForgotPassword.vue";
-import ResetPassword from "../components/account/ResetPassword.vue"
-import VerifyEmail from "../components/account/VerifyEmail.vue"
+import ResetPassword from "../components/account/ResetPassword.vue";
+import VerifyEmail from "../components/account/VerifyEmail.vue";
+import FacilityInfo from "@/components/pages/facility/FacilityInfo.vue";
 
 export default [
   { path: "/", component: HomePage },
@@ -30,19 +31,23 @@ export default [
   },
   {
     path: "/tai-khoan",
-    component: AccountPage
+    component: AccountPage,
   },
   {
     path: "/quen-mat-khau",
-    component: ForgotPassword
+    component: ForgotPassword,
   },
   {
     path: "/cai-dat-lai-mat-khau",
-    component: ResetPassword
+    component: ResetPassword,
   },
   {
     path: "/xac-thuc-email",
-    component: VerifyEmail
+    component: VerifyEmail,
+  },
+  {
+    path: "/co-so-y-te/:nameFacility",
+    component: FacilityInfo
   }
   // {
   //   path: "/404",

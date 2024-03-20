@@ -1,5 +1,7 @@
 import { mapState, mapGetters, mapActions } from "vuex";
 import { patientComputed, patientMethods } from "./modules/patients";
+import { clinicComputed, clinicMethods } from "./modules/clinic";
+import { specialityComputed, specialityMethods } from "./modules/speciality";
 export const authComputed = {
   ...mapState("auth", ["currentUser"]),
   ...mapGetters("auth", ["loggedIn", "token", "refreshToken"]),
@@ -22,3 +24,7 @@ export const notifyComputed = {
 };
 
 export const patients = { patientComputed, patientMethods }
+
+export const clinic = { clinicComputed, clinicMethods }
+
+export const speciality = { specialityComputed, specialityMethods}

@@ -64,9 +64,6 @@
 import ForUser from "./layout/ForUser.vue";
 import ComprehensiveService from "./layout/ComprehensiveService.vue";
 import DoctorList from "./layout/DoctorList.vue";
-// import ContentSlider from "../../content/ContentSlider.vue";
-// import SliderItem from "../../content/SliderItem.vue";
-// import CarouselLayout from "../../content/CarouselLayout.vue";
 import SpecialityCarousel from "./layout/SpecialityCarousel.vue";
 import FacilityCarousel from "./layout/FacilityCarousel.vue";
 import RemoteExamination from "./layout/RemoteExamination.vue";
@@ -76,6 +73,11 @@ import AskDoctor from "./layout/AskDoctor.vue";
 import HandBook from "./layout/HandBook.vue";
 import LiveHealth from "./layout/LiveHealth.vue";
 export default {
+  data() {
+    return {
+      clinics: []
+    }
+  },
   components: {
     ForUser,
     ComprehensiveService,
