@@ -46,7 +46,7 @@ export default [
     component: VerifyEmail,
   },
   {
-    path: "/co-so-y-te/:nameFacility",
+    path: "/co-so-y-te/:facilityId",
     component: FacilityInfo
   }
   // {

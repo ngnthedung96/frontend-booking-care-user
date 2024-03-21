@@ -21,19 +21,16 @@
       mandatory
       show-arrows
     >
-      <v-slide-group-item
-        v-for="clinic in clinicList"
-        :key="clinic['_id']"
-      >
-        <router-link to="/">
+      <v-slide-group-item v-for="clinic in clinicList" :key="clinic['_id']">
+        <router-link :to="'/co-so-y-te/' + clinic.id">
           <v-card
             class="ma-4"
             color="grey-lighten-1"
             height="350"
             width="357.333333333"
           >
-          <!-- <img :src="clinic.imageLink" alt=""> -->
-          <div>{{ clinic.name }}</div>
+            <!-- <img :src="clinic.imageLink" alt=""> -->
+            <div>{{ clinic.name }}</div>
           </v-card>
         </router-link>
       </v-slide-group-item>
@@ -62,5 +59,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

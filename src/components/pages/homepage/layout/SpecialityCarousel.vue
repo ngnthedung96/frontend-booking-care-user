@@ -56,7 +56,6 @@ export default {
     },
     async getSpeciality() {
       await this.getListSpeciality();
-      console.log(this.specialityList)
     },
   },
   async created() {
