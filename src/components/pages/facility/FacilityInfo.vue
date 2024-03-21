@@ -79,16 +79,24 @@
 </template>
 
 <script>
+import { clinic } from "../../../state/helpers";
 export default {
   computed: {
+    ...clinic.clinicComputed,
     getItem() {
-      return this.$store.state.clinic.clinic.clinicItem
-    }
+      return this.clinicItem;
+    },
   },
-  created() {
-    this.$store.dispatch("clinic/clinic/getDetailClinic", this.$route.params.facilityId)
-  }
-}
+  methods: {
+    ...clinic.clinicMethods,
+    async initial() {
+      await this.getDetailClinic(this.$route.params.facilityId);
+    },
+  },
+  async created() {
+    await this.initial();
+  },
+};
 </script>
 
 <style scoped>
