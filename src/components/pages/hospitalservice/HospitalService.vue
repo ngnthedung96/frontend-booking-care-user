@@ -1,7 +1,9 @@
 <template>
   <main-content>
     <banner-image>
-      <img class="w-100" src="../../../img/hospital/hospita.png" alt="" />
+      <v-container class="pa-0">
+        <img class="w-100" src="../../../img/hospital/hospita.png" alt="" />
+      </v-container>
     </banner-image>
     <div class="space-150"></div>
     <v-container>
@@ -100,6 +102,10 @@ export default {
 
 .space {
   height: 50px;
+}
+
+.w-100 {
+  border-radius: 30px;
 }
 
 .w-100 {

@@ -20,12 +20,6 @@ export default {
       return this.authPage;
     },
   },
-  methods: {
-    getPath(path) {
-      console.log(path);
-      return path;
-    },
-  },
 };
 </script>
 

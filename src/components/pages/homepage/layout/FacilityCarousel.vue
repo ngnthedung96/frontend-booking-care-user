@@ -4,7 +4,7 @@
       <h2 style="font-weight: 600">Cơ sở y tế</h2>
     </div>
     <div class="px-0 v-col-2">
-      <router-link class="text-decoration-none" to="/">
+      <router-link class="text-decoration-none" to="/co-so-y-te">
         <v-btn
           size="large"
           class="bg-teal-lighten-5 text-cyan-accent-4 text-capitalize"

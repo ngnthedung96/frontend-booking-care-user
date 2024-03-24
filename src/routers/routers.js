@@ -11,7 +11,9 @@ import ForgotPassword from "@/components/account/ForgotPassword.vue";
 import ResetPassword from "../components/account/ResetPassword.vue";
 import VerifyEmail from "../components/account/VerifyEmail.vue";
 import FacilityInfo from "@/components/pages/facility/FacilityInfo.vue";
-
+import AllSpeciality from "@/components/pages/speciality/AllSpeciality.vue";
+import FacilityPage from "../components/pages/facility/layout/FacilityPage.vue"
+// import AllFacility from "@/components/pages/facility/AllFacility.vue";
 export default [
   { path: "/", component: HomePage },
   { path: "/dich-vu/tai-nha", component: HomeService },
@@ -46,8 +48,15 @@ export default [
     component: VerifyEmail,
   },
   {
-    path: "/co-so-y-te/:facilityId",
-    component: FacilityInfo
+    path: "/chuyen-khoa",
+    component: AllSpeciality
+  },
+  {
+    path: "/co-so-y-te",
+    component: FacilityPage,
+    children: [
+      { path: ':facilityId', component: FacilityInfo }
+    ]
   }
   // {
   //   path: "/404",

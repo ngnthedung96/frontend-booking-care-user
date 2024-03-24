@@ -25,8 +25,8 @@
       show-arrows
     >
       <v-slide-group-item
-        v-for="n in 15"
-        :key="n"
+        v-for="doctor in doctorList"
+        :key="doctor.id"
       >
         <v-card
         class="ma-4"
@@ -34,9 +34,31 @@
           height="200"
           width="260"
         >
-          
+          <div class="doctor-name">{{ doctor.name }}</div>
         </v-card>
       </v-slide-group-item>
     </v-slide-group>
   </v-sheet>
 </template>
+
+<script>
+import { doctor } from '@/state/helpers'
+export default {
+  computed: {
+    ...doctor.doctorComputed
+  },
+  methods: {
+    ...doctor.doctorsMethods,
+    initial() {
+      this.getDoctors()
+    },
+    async getDoctors() {
+      await this.getListDoctors()
+      console.log(this.doctorList)
+    }
+  },
+  created() {
+    this.initial()
+  }
+}
+</script>

@@ -1,7 +1,9 @@
 <template>
   <main-content>
     <banner-image>
-      <img class="w-100" src="../../../img/healthy/healthy.png" alt="" />
+      <v-container class="pa-0">
+        <img class="w-100" src="../../../img/healthy/healthy.png" alt="" />
+      </v-container>
     </banner-image>
     <div class="space-150"></div>
     <v-container>
