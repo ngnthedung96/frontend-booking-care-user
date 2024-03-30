@@ -28,7 +28,7 @@
         v-for="item in specialityList"
         :key="item['_id']"
       >
-        <router-link to="/">
+        <router-link :to="/chuyen-khoa/ + item.id">
           <v-card
             class="ma-4"
             color="grey-lighten-1"

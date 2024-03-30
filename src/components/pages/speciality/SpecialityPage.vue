@@ -11,8 +11,8 @@
       <div class="list-speciality">
         <speciality-item
           v-for="item in specialityList"
-          :key="item['_id']"
-          :id="item['_id']"
+          :key="item.id"
+          :id="item.id"
           :name="item.name"
         ></speciality-item>
       </div>
@@ -37,7 +37,6 @@ export default {
     },
     async getSpeciality() {
       await this.getListSpeciality();
-      console.log(this.specialityList);
     },
   },
   async created() {

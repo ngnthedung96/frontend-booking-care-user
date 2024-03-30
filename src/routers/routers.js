@@ -11,9 +11,15 @@ import ForgotPassword from "@/components/account/ForgotPassword.vue";
 import ResetPassword from "../components/account/ResetPassword.vue";
 import VerifyEmail from "../components/account/VerifyEmail.vue";
 import FacilityInfo from "@/components/pages/facility/FacilityInfo.vue";
-import AllSpeciality from "@/components/pages/speciality/AllSpeciality.vue";
-import FacilityPage from "../components/pages/facility/FacilityPage.vue"
+import SpecialityPage from "@/components/pages/speciality/SpecialityPage.vue";
+import FacilityPage from "../components/pages/facility/FacilityPage.vue";
+import SpecialityInfo from "../components/pages/speciality/SpecialityInfo.vue";
 import NotFound from "@/components/pages/NotFound.vue";
+import AdminPage from "@/admin-component/AdminPage.vue";
+import AccountAdmin from "@/admin-component/pages/AccountAdmin.vue";
+import SpecialityAdmin from "@/admin-component/pages/SpecialityAdmin.vue";
+import ClinicAdmin from "../admin-component/pages/ClinicAdmin.vue"
+import DoctorAdmin from "../admin-component/pages/DoctorAdmin.vue"
 export default [
   { path: "/", component: HomePage },
   { path: "/dich-vu/tai-nha", component: HomeService },
@@ -49,18 +55,41 @@ export default [
   },
   {
     path: "/chuyen-khoa",
-    component: AllSpeciality
+    component: SpecialityPage,
+  },
+  {
+    path: "/chuyen-khoa/:specialityId",
+    component: SpecialityInfo,
   },
   {
     path: "/co-so-y-te",
     component: FacilityPage,
   },
-  { path: '/co-so-y-te/:facilityId', 
-    component: FacilityInfo
+  { path: "/co-so-y-te/:facilityId", component: FacilityInfo },
+  {
+    path: "/admin",
+    component: AdminPage,
   },
   {
-    path: "/:notFound(.*)", component: NotFound
-  }
+    path: "/admin/tai-khoan",
+    component: AccountAdmin,
+  },
+  {
+    path: "/admin/chuyen-khoa",
+    component: SpecialityAdmin
+  },
+  {
+    path: "/admin/co-so-y-te",
+    component: ClinicAdmin
+  },
+  {
+    path: "/admin/bac-si",
+    component: DoctorAdmin
+  },
+  {
+    path: "/:notFound(.*)",
+    component: NotFound,
+  },
   // {
   //   path: "/404",
   //   name: "404",

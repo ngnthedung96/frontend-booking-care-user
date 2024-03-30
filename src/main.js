@@ -9,6 +9,7 @@ import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 import "@mdi/font/css/materialdesignicons.css";
 import MainContent from "./components/layout/MainContent.vue";
+import AdminContent from "./admin-component/content/AdminContent.vue"
 import BannerImage from "./components/content/BannerImage.vue";
 // for notification
 import notification from "@kyvg/vue3-notification";
@@ -79,6 +80,7 @@ systemAxios.interceptors.response.use(
 
 app.use(notification);
 app.component("main-content", MainContent);
+app.component("admin-content", AdminContent)
 app.component("banner-image", BannerImage);
 app.use(router)
 app.use(store);

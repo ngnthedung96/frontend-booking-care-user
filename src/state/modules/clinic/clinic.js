@@ -15,30 +15,14 @@ export const mutations = {
 };
 
 export const actions = {
-  async getListClinic({ commit, dispatch }) {
-    try {
+  async getListClinic({ commit }) {
       const result = await systemAxios.get("/clinic/get-list?limit=20&page=1");
       const data = result.data.data.docs;
       commit("fetchClinic", data);
-    } catch (err) {
-      if (err.response) {
-        dispatch("notification/error", err.response.data.msg, { root: true });
-      } else {
-        dispatch("notification/error", err, { root: true });
-      }
-    }
   },
-  async getDetailClinic({ commit, dispatch }, data) {
-    try {
-      const result = await systemAxios.get(`/clinic/get-one/${data}`);
-      const item = result.data.data;
-      commit("getClinicItem", item);
-    } catch (err) {
-      if (err.response) {
-        dispatch("notification/error", err.response.data.msg, { root: true });
-      } else {
-        dispatch("notification/error", err, { root: true });
-      }
-    }
+  async getDetailClinic({ commit }, data) {
+    const result = await systemAxios.get(`/clinic/get-one/${data}`);
+    const item = result.data.data;
+    commit("getClinicItem", item);
   },
 };

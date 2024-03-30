@@ -1,6 +1,6 @@
 <template>
-  <router-link to="/" class="item pa-3 d-flex text-black">
-    <div class="name">{{ name }}</div>
+  <router-link :to="/chuyen-khoa/ + id" class="item pa-3 d-flex text-black">
+    <div class="title">{{ name }}</div>
   </router-link>
 </template>
 

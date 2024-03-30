@@ -54,7 +54,6 @@ export default {
     },
     async getDoctors() {
       await this.getListDoctors()
-      console.log(this.doctorList)
     }
   },
   created() {

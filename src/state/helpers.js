@@ -28,6 +28,6 @@ export const patients = { patientComputed, patientMethods }
 
 export const clinic = { clinicComputed, clinicMethods }
 
-export const speciality = { specialityComputed, specialityMethods}
+export const speciality = { specialityComputed, specialityMethods }
 
 export const doctor = { doctorComputed, doctorsMethods }
