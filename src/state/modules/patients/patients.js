@@ -17,9 +17,6 @@ export const mutations = {
   fetchConfig(state, newValue) {
     state.configpatitentDatas = newValue;
   },
-  addData(state, newValue) {
-    state.patitentDatas.unshift(newValue);
-  },
 };
 
 export const actions = {

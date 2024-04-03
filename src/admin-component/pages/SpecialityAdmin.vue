@@ -24,11 +24,11 @@
     <v-table class="my-4 mx-8" theme="light">
       <thead>
         <tr>
-          <th class="text-left">STT</th>
+          <th class="text-left index">STT</th>
           <th class="text-left name">Tên chuyên khoa</th>
           <th class="text-left desc">Mô tả</th>
           <th class="text-left id">id</th>
-          <th class="text-left">Edit</th>
+          <th class="text-left edit">Edit</th>
         </tr>
       </thead>
       <tbody>
@@ -44,14 +44,16 @@
           <td class="py-3">{{ item.description }}</td>
           <td>{{ item.id }}</td>
           <td>
-            <button class="pa-1 bg-light-blue-darken-1">
-              <v-icon>mdi-file-edit-outline</v-icon>
-              <span>Edit</span>
-            </button>
-            <button class="pa-1 ml-3 bg-red-lighten-1">
-              <v-icon>mdi-trash-can-outline</v-icon>
-              <span>Xóa</span>
-            </button>
+            <div class="d-flex flex-wrap justify-space-around">
+              <button class="pa-1 bg-light-blue-darken-1">
+                <v-icon>mdi-file-edit-outline</v-icon>
+                <span>Edit</span>
+              </button>
+              <button class="pa-1 bg-red-lighten-1">
+                <v-icon>mdi-trash-can-outline</v-icon>
+                <span>Xóa</span>
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -64,6 +66,10 @@
   border-top: 1px solid #ccc;
 }
 
+.index {
+  width: 5%;
+}
+ 
 .title {
   font-size: 25px;
   font-weight: 500;
@@ -78,7 +84,7 @@
 }
 
 .desc {
-  width: 40%;
+  width: 30%;
 }
 
 .name {
@@ -86,7 +92,11 @@
 }
 
 .id {
-    width: 20%;
+  width: 15%;
+}
+
+.edit {
+  width: 10%;
 }
 
 td {

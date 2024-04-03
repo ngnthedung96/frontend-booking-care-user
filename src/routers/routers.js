@@ -1,8 +1,5 @@
 import HomePage from "../components/pages/homepage/HomePage.vue";
-import HomeService from "../components/pages/homeservice/HomeService.vue";
-import HospitalService from "../components/pages/hospitalservice/HospitalService.vue";
 import SearchPage from "../components/pages/searchpage/SearchPage.vue";
-import StayHealthy from "../components/pages/stayhealthy/StayHealthy.vue";
 import TimeSchedule from "../components/pages/schedule/TimeSchedule.vue";
 import LoginUser from "../components/create-account/LoginUser.vue";
 import RegisterUser from "../components/create-account/RegisterUser.vue";
@@ -14,6 +11,8 @@ import FacilityInfo from "@/components/pages/facility/FacilityInfo.vue";
 import SpecialityPage from "@/components/pages/speciality/SpecialityPage.vue";
 import FacilityPage from "../components/pages/facility/FacilityPage.vue";
 import SpecialityInfo from "../components/pages/speciality/SpecialityInfo.vue";
+import AllDoctors from "@/components/pages/doctors/AllDoctors.vue";
+import DoctorDetail from "@/components/pages/doctors/DoctorDetail.vue";
 import NotFound from "@/components/pages/NotFound.vue";
 import AdminPage from "@/admin-component/AdminPage.vue";
 import AccountAdmin from "@/admin-component/pages/AccountAdmin.vue";
@@ -22,10 +21,7 @@ import ClinicAdmin from "../admin-component/pages/ClinicAdmin.vue"
 import DoctorAdmin from "../admin-component/pages/DoctorAdmin.vue"
 export default [
   { path: "/", component: HomePage },
-  { path: "/dich-vu/tai-nha", component: HomeService },
-  { path: "/dich-vu/tai-vien", component: HospitalService },
   { path: "/tim-kiem", component: SearchPage },
-  { path: "/dich-vu/song-khoe", component: StayHealthy },
   { path: "/lich-hen", component: TimeSchedule },
   {
     path: "/dang-nhap",
@@ -66,6 +62,8 @@ export default [
     component: FacilityPage,
   },
   { path: "/co-so-y-te/:facilityId", component: FacilityInfo },
+  { path: "/bac-si-noi-bat", component: AllDoctors},
+  { path: "/bac-si-noi-bat/:doctorId", component: DoctorDetail},
   {
     path: "/admin",
     component: AdminPage,

@@ -28,22 +28,15 @@
                 <li @click="currentPath" class="v-col-auto d-flex pa-0">
                   <router-link
                     class="text-decoration-none text-black"
-                    to="/dich-vu/tai-nha"
-                    >Tại nhà</router-link
+                    to="/chuyen-khoa"
+                    >Chuyên khoa</router-link
                   >
                 </li>
                 <li @click="currentPath" class="v-col-auto d-flex pa-0">
                   <router-link
                     class="text-decoration-none text-black"
-                    to="/dich-vu/tai-vien"
-                    >Tại viện</router-link
-                  >
-                </li>
-                <li @click="currentPath" class="v-col-auto d-flex pa-0">
-                  <router-link
-                    class="text-decoration-none text-black"
-                    to="/dich-vu/song-khoe"
-                    >Sống khỏe</router-link
+                    to="/co-so-y-te"
+                    >Cơ sở y tế</router-link
                   >
                 </li>
               </ul>

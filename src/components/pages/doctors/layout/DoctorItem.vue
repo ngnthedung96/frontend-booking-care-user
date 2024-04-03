@@ -1,7 +1,7 @@
 <template>
-  <router-link :to="'/chuyen-khoa/' + id" class="item pa-3 d-flex text-black">
-    <div class="title">{{ name }}</div>
-  </router-link>
+    <router-link :to="'/bac-si-noi-bat/' + id" class="item pa-3 d-flex text-black">
+        <div class="title">{{ name }}</div>
+    </router-link>
 </template>
 
 <script>

@@ -4,7 +4,7 @@
       <h2 style="font-weight: 600">Bác sĩ nổi bật</h2>
     </div>
     <div class="px-0 v-col-2">
-      <router-link class="text-decoration-none" to="/">
+      <router-link class="text-decoration-none" to="/bac-si-noi-bat">
         <v-btn
           size="large"
           class="bg-teal-lighten-5 text-cyan-accent-4 text-capitalize"
@@ -28,6 +28,8 @@
         v-for="doctor in doctorList"
         :key="doctor.id"
       >
+      <router-link :to="'/bac-si-noi-bat/' + doctor.id">
+
         <v-card
         class="ma-4"
           color="grey-lighten-1"
@@ -36,6 +38,7 @@
         >
           <div class="doctor-name">{{ doctor.name }}</div>
         </v-card>
+      </router-link>
       </v-slide-group-item>
     </v-slide-group>
   </v-sheet>
