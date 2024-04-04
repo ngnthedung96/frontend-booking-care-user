@@ -54,15 +54,21 @@ export const actions = {
   },
 
   refreshToken({ commit }, data) {
-    tokenService.updateLocalToken(
-      data
-    );
+    tokenService.updateLocalToken(data);
     commit("refreshToken", data);
   },
   // register the user
   async registeruser({ dispatch }, user) {
+    let formData = new FormData();
+    formData.append("name", user.name);
+    formData.append("password", user.password);
+    formData.append("phone", user.phone);
+    formData.append("address", user.address);
+    formData.append("email", user.email);
+    formData.append("image", user.image[0].name);
+    console.log(formData.get('image'))
     try {
-      const result = await systemAxios.post("/auth/register", user);
+      const result = await systemAxios.post("/auth/register", formData);
       const { message, error } = result.data;
       if (!error) {
         dispatch("notification/success", message, { root: true });

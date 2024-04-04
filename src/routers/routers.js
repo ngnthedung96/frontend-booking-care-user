@@ -13,6 +13,7 @@ import FacilityPage from "../components/pages/facility/FacilityPage.vue";
 import SpecialityInfo from "../components/pages/speciality/SpecialityInfo.vue";
 import AllDoctors from "@/components/pages/doctors/AllDoctors.vue";
 import DoctorDetail from "@/components/pages/doctors/DoctorDetail.vue";
+import MakeAppointment from "@/components/pages/doctors/MakeAppointment.vue";
 import NotFound from "@/components/pages/NotFound.vue";
 import AdminPage from "@/admin-component/AdminPage.vue";
 import AccountAdmin from "@/admin-component/pages/AccountAdmin.vue";
@@ -64,6 +65,7 @@ export default [
   { path: "/co-so-y-te/:facilityId", component: FacilityInfo },
   { path: "/bac-si-noi-bat", component: AllDoctors},
   { path: "/bac-si-noi-bat/:doctorId", component: DoctorDetail},
+  { path: "/dat-lich-kham/:doctorId", component: MakeAppointment},
   {
     path: "/admin",
     component: AdminPage,

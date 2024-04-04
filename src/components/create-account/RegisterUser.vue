@@ -34,10 +34,7 @@
             </div>
 
             <div class="form-control">
-              <v-text-field
-                v-model="address"
-                label="Địa chỉ"
-              ></v-text-field>
+              <v-text-field v-model="address" label="Địa chỉ"></v-text-field>
             </div>
 
             <div class="form-control">
@@ -73,6 +70,7 @@
 
             <div class="form-control">
               <v-file-input
+                v-model="image"
                 accept="image/*"
                 label="Ảnh đại diện"
               ></v-file-input>
@@ -122,6 +120,7 @@ export default {
       phone: "",
       address: "",
       email: "",
+      image: null,
       showPassword: false,
       submitted: false,
       isLoading: false,
@@ -158,14 +157,24 @@ export default {
       if (!isFormCorrect) {
         return;
       } else {
-        const { name, password, phone, address, email } = this;
+        const { name, password, phone, address, email, image } = this;
         await this.registeruser({
           name,
           password,
           phone,
           address,
           email,
+          image
         });
+        // let formData = new FormData()
+        // formData.append('name', this.name)
+        // formData.append('password', this.password)
+        // formData.append('phone', this.phone)
+        // formData.append('address', this.address)
+        // formData.append('email', this.email)
+        // formData.append('image', this.image)
+
+        // console.log(formData.get(name));
       }
       this.isLoading = false;
     },

@@ -49,12 +49,24 @@
           <div class="ml-1 calendar">LỊCH KHÁM</div>
         </div>
         <div class="hour d-flex flex-wrap">
-          <button class="bg-grey-lighten-2 ma-1 pa-4">08:00 - 08:30</button>
-          <button class="bg-grey-lighten-2 ma-1 pa-4">08:00 - 08:30</button>
-          <button class="bg-grey-lighten-2 ma-1 pa-4">08:00 - 08:30</button>
-          <button class="bg-grey-lighten-2 ma-1 pa-4">08:00 - 08:30</button>
-          <button class="bg-grey-lighten-2 ma-1 pa-4">08:00 - 08:30</button>
-          <button class="bg-grey-lighten-2 ma-1 pa-4">08:00 - 08:30</button>
+          <router-link :to="'/dat-lich-kham/' + getItem.id">
+            <button class="bg-grey-lighten-2 ma-1 pa-4">08:00 - 08:30</button>
+          </router-link>
+          <router-link :to="'/dat-lich-kham/' + getItem.id">
+            <button class="bg-grey-lighten-2 ma-1 pa-4">08:00 - 08:30</button>
+          </router-link>
+          <router-link :to="'/dat-lich-kham/' + getItem.id">
+            <button class="bg-grey-lighten-2 ma-1 pa-4">08:00 - 08:30</button>
+          </router-link>
+          <router-link :to="'/dat-lich-kham/' + getItem.id">
+            <button class="bg-grey-lighten-2 ma-1 pa-4">08:00 - 08:30</button>
+          </router-link>
+          <router-link :to="'/dat-lich-kham/' + getItem.id">
+            <button class="bg-grey-lighten-2 ma-1 pa-4">08:00 - 08:30</button>
+          </router-link>
+          <router-link :to="'/dat-lich-kham/' + getItem.id">
+            <button class="bg-grey-lighten-2 ma-1 pa-4">08:00 - 08:30</button>
+          </router-link>
         </div>
       </div>
       <div class="v-col-5 ml-2">
@@ -108,14 +120,6 @@ export default {
   },
   async created() {
     await this.initial();
-    // const today = new Date();
-    // const tomorrow = new Date(today);
-    // tomorrow.setDate(tomorrow.getDate() + 1);
-    // var day = tomorrow.getDate();
-    // var month = tomorrow.getMonth() + 1;
-    // var year = tomorrow.getFullYear();
-    // console.log(tomorrow);
-    // console.log(`${day}/${month}/${year}`);
   },
 };
 </script>
